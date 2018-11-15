@@ -3,7 +3,7 @@ module.exports = {
       hostname: 'foobarbimmer.com',
       port: 8500,
       protocol: 'http:',
-      address: 'foobarbimmer.com',
+      address: 'fhsoobarbimmer.com',
       check: {
         checkurl: 'https://foobarbimmer.com/zips',
         interval: '5s'

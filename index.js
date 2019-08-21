@@ -2,7 +2,14 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 const register = require('consul-register')(require('./config'));
-register();
+const regLoop = () => {
+  try {
+    register();
+  } catch(e){
+    setTimeout(regLoop, 60000);
+  }
+};
+regLoop();
 const zips = fs.readFileSync('./zips.csv').toString()
   .split('\n')
   .map(z => z.split(','))

@@ -23,6 +23,6 @@ const zips = fs.readFileSync('./zips.csv').toString()
   }))
 app.get('/zips/:zip', (req, res)=>{
   req.params.zip !== '11215' && console.log('get', req.params.zip);
-  res.json(zips.find(z=>z.zip === req.params.zip))
+  res.json(zips.find(z => req.params.zip.includes(z.zip)))
 });
 app.listen(8080)

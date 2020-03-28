@@ -1,15 +1,16 @@
 const fs = require('fs');
 const express = require('express');
 const app = express();
-const register = require('consul-register')(require('./config'));
-const regLoop = () => {
-  try {
-    register();
-  } catch(e){
-    setTimeout(regLoop, 60000);
-  }
-};
-regLoop();
+// const register = require('consul-register')(require('./config'));
+// const regLoop = () => {
+//   try {
+//     register();
+//   } catch(e){
+//     setTimeout(regLoop, 60000);
+//   }
+// };
+// regLoop();
+console.log('testing cd');
 const zips = fs.readFileSync('./zips.csv').toString()
   .split('\n')
   .map(z => z.split(','))
@@ -23,6 +24,6 @@ const zips = fs.readFileSync('./zips.csv').toString()
   }))
 app.get('/zips/:zip', (req, res)=>{
   req.params.zip !== '11215' && console.log('get', req.params.zip);
-  res.json(zips.find(z => req.params.zip.includes(z.zip)))
+  res.json(zips.find(z=>z.zip === req.params.zip));
 });
 app.listen(8080)
